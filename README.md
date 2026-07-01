@@ -6,11 +6,10 @@ Estrategia sistematica de momentum cross-sectional com volatility targeting, apl
 
 | Versao | Sharpe | Sortino | Max Drawdown | Retorno |
 |---|---|---|---|---|
-| Pura (sem CDI, vs zero) | 1,09 | 1,58 | -26% | +3.257% |
-| **Com CDI no caixa (vs CDI)** | **0,75** | **1,10** | **-25%** | **+5.660%** |
+| **Estrategia** (caixa em CDI) | **1,24** | **1,80** | **-25%** | **+5.660%** |
 | Buy & Hold (1/3 cada) | 0,83 | 1,15 | -52% | +3.017% |
 
-Nota honesta: no Brasil o risco-livre (CDI) e alto, entao o Sharpe e medido CONTRA o CDI (0,75 = habilidade real). O caixa rende CDI (sobe o retorno total), mas no Sharpe vs CDI esse ganho se neutraliza, sobrando so o quanto a parte investida bate o CDI. O 1,09 e a versao sem CDI, vs zero.
+Convencao: Sharpe/Sortino medidos vs zero (retorno/vol), a MESMA regua para a estrategia e para o Buy&Hold — comparacao justa. Liquido do CDI (~9,5%/ano, o "Sharpe de livro"), a estrategia faz 0,75 e o B&H 0,48: a estrategia bate o Buy&Hold sob as duas reguas, com metade do drawdown.
 
 ![Resultado](rotacao.png)
 

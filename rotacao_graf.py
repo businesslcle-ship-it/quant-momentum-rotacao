@@ -53,9 +53,10 @@ excesso      = retorno_estrategia - cdi_diario.reindex(retorno_estrategia.index)
 patrimonio   = (1 + retorno_estrategia).cumprod()
 buy_hold     = (1 + retorno_diario.mean(axis=1)).cumprod()
 drawdown     = (patrimonio / patrimonio.cummax() - 1) * 100
-sharpe_cdi   = excesso.mean() / retorno_estrategia.std() * np.sqrt(DIAS_NO_ANO)
-sortino_cdi  = excesso.mean() / retorno_estrategia[retorno_estrategia < 0].std() * np.sqrt(DIAS_NO_ANO)
-print(f"Sharpe (vs CDI)={sharpe_cdi:.2f}  Sortino={sortino_cdi:.2f}  MaxDD={drawdown.min():.0f}%  ret={patrimonio.iloc[-1]-1:.0%}")
+sharpe       = retorno_estrategia.mean() / retorno_estrategia.std() * np.sqrt(DIAS_NO_ANO)      # vs zero (mesma regua do B&H)
+sortino      = retorno_estrategia.mean() / retorno_estrategia[retorno_estrategia < 0].std() * np.sqrt(DIAS_NO_ANO)
+sharpe_cdi   = excesso.mean() / retorno_estrategia.std() * np.sqrt(DIAS_NO_ANO)                 # referencia: liquido do CDI
+print(f"Sharpe (vs zero)={sharpe:.2f} (liq. CDI {sharpe_cdi:.2f})  Sortino={sortino:.2f}  MaxDD={drawdown.min():.0f}%  ret={patrimonio.iloc[-1]-1:.0%}")
 
 # ============================ 6) GRAFICO (3 paineis) ============================
 fig, (ax_patr, ax_dd, ax_aloc) = plt.subplots(3, 1, figsize=(13, 10), sharex=True, height_ratios=[2, 1, 1])

@@ -62,20 +62,22 @@ custo      = peso.diff().abs().sum(axis=1) * CUSTO_POR_ORDEM      # custo a cada
 retorno_estrategia = (ret_invest + ret_caixa - custo).dropna()
 
 # ============================ 5) RESULTADOS (em sequencia) ============================
-# Sharpe/Sortino medem HABILIDADE -> usam o retorno ACIMA do CDI (CDI nao e alfa, e o piso).
-# Ja o patrimonio/retorno total mostram o dinheiro REAL (com o CDI do caixa incluido).
-excesso         = retorno_estrategia - cdi_diario.reindex(retorno_estrategia.index)
+# Convencao unica: Sharpe/Sortino vs zero (retorno/vol) -> a MESMA regua usada no Buy&Hold,
+# para a comparacao ser justa. Como referencia, imprimo tambem o valor liquido do CDI
+# (o "Sharpe de livro", em que o piso e o CDI de ~9,5%/ano).
 patrimonio      = (1 + retorno_estrategia).cumprod()
-sharpe          = excesso.mean() / retorno_estrategia.std() * np.sqrt(DIAS_NO_ANO)
-sortino         = excesso.mean() / retorno_estrategia[retorno_estrategia < 0].std() * np.sqrt(DIAS_NO_ANO)
+excesso_cdi     = retorno_estrategia - cdi_diario.reindex(retorno_estrategia.index)
+sharpe          = retorno_estrategia.mean() / retorno_estrategia.std() * np.sqrt(DIAS_NO_ANO)
+sortino         = retorno_estrategia.mean() / retorno_estrategia[retorno_estrategia < 0].std() * np.sqrt(DIAS_NO_ANO)
+sharpe_cdi      = excesso_cdi.mean() / retorno_estrategia.std() * np.sqrt(DIAS_NO_ANO)
 max_drawdown    = (patrimonio / patrimonio.cummax() - 1).min()
 retorno_total   = patrimonio.iloc[-1] - 1
 exposicao_media = exposicao.mean()
 
 print("=== Rotacao Momentum + Vol Targeting (caixa rende 100% do CDI do ano) ===")
 print(f"Periodo:          {retorno_estrategia.index[0].date()} a {retorno_estrategia.index[-1].date()}")
-print(f"Sharpe (vs CDI):  {sharpe:.2f}")
-print(f"Sortino (vs CDI): {sortino:.2f}")
+print(f"Sharpe (vs zero): {sharpe:.2f}   (liquido do CDI: {sharpe_cdi:.2f})")
+print(f"Sortino (vs zero):{sortino:.2f}")
 print(f"Max Drawdown:     {max_drawdown:.0%}")
 print(f"Retorno total:    {retorno_total:.0%}")
 print(f"Exposicao media:  {exposicao_media:.0%}  (o resto, {1-exposicao_media:.0%}, em caixa rendendo CDI)")
