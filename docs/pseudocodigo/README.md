@@ -5,6 +5,8 @@ Cada arquivo narra o código **linha a linha** em português — a prova oral di
 | Estratégia | Código | Markdown | Word |
 |---|---|---|---|
 | Rotação Momentum v2 | [`src/rotacao.py`](../../src/rotacao.py) | [rotacao_v2.md](rotacao_v2.md) | [rotacao_v2.docx](rotacao_v2.docx) |
-| Dual Momentum 60min (apresentado) | [`src/dual_momentum.py`](../../src/dual_momentum.py) | [dual_momentum_60min.md](dual_momentum_60min.md) | [dual_momentum_60min.docx](dual_momentum_60min.docx) |
+| Dual Momentum (apresentado) | [`src/dual_momentum.py`](../../src/dual_momentum.py) | [dual_momentum.md](dual_momentum.md) | [dual_momentum.docx](dual_momentum.docx) |
+
+O Dual Momentum apresentado avalia o núcleo do livro nas **barras de 60min** (com histerese de 5%). O baseline mensal (`dual_momentum_mensal.py`) é outra versão — só para comparar.
 
 **Regra de consistência:** se o código mudar, regenerar o pseudocódigo na mesma entrega (números e linhas têm de bater).

@@ -1,8 +1,8 @@
-# Pseudocódigo — Dual Momentum fiel nos 60min (`src/dual_momentum.py`)
+# Pseudocódigo — Dual Momentum (`src/dual_momentum.py`)
 
 Cada item traduz uma linha do código para português, na ordem em que executa.
 
-Núcleo do livro intacto (12 meses por **calendário**). Uma concessão: **histerese de 5%** na troca de líder.
+Núcleo do livro intacto (12 meses por **calendário**), avaliado nas **barras de 60min**. Uma concessão: **histerese de 5%** na troca de líder.
 
 ## Parâmetros
 
