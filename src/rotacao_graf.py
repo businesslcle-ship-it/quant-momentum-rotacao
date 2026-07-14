@@ -53,8 +53,6 @@ if not (0.9 <= float(buy_hold.iloc[0]) <= 1.1):
 
 drawdown = (patrimonio / patrimonio.cummax() - 1) * 100
 sharpe   = ret_estrategia.mean() / ret_estrategia.std() * np.sqrt(DIAS_NO_ANO)
-print(f"Sharpe (vs zero, 20 bps)={sharpe:.2f}  MaxDD={drawdown.min():.0f}%  ret={patrimonio.iloc[-1]-1:.0%}")
-print(f"B&H 1/3 mesma janela: ret={buy_hold.iloc[-1]-1:.0%}  (v2 / B&H no fim = {patrimonio.iloc[-1]/buy_hold.iloc[-1]:.2f}x)")
 
 fig, (a1, a2, a3) = plt.subplots(3, 1, figsize=(13, 10), sharex=True, height_ratios=[2, 1, 1], facecolor="#fcfcfb")
 patrimonio.plot(ax=a1, color="#2a78d6", lw=2, label="Rotacao v2 (com CDI no caixa)")
@@ -66,5 +64,10 @@ a2.fill_between(drawdown.index, drawdown.values, 0, color="#e34948", alpha=0.35)
 a2.set_title("Drawdown (%)"); a2.grid(alpha=0.25)
 peso.plot.area(ax=a3, color=[CORES[a] for a in ATIVOS], linewidth=0, alpha=0.85)
 a3.set_title("Alocacao (o vazio ate 1 e o caixa em CDI)"); a3.legend(loc="upper left"); a3.set_ylim(0, 1)
-fig.tight_layout(); fig.savefig(FIGS / "rotacao.png", dpi=130, facecolor="#fcfcfb")
-print(f"Grafico salvo: {FIGS / 'rotacao.png'}")
+fig.tight_layout()
+fig.savefig(FIGS / "rotacao.png", dpi=130, facecolor="#fcfcfb")
+print(
+    f"Rotacao v2 | Sharpe {sharpe:.2f} | MaxDD {drawdown.min():.0f}% | ret {patrimonio.iloc[-1]-1:.0%} | "
+    f"B&H ret {buy_hold.iloc[-1]-1:.0%} (v2/B&H={patrimonio.iloc[-1]/buy_hold.iloc[-1]:.2f}x) | "
+    f"fig {FIGS / 'rotacao.png'}"
+)

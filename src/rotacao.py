@@ -78,12 +78,9 @@ sharpe_cdi   = excesso_cdi.mean() / retorno_estrategia.std() * np.sqrt(DIAS_NO_A
 max_drawdown = (patrimonio / patrimonio.cummax() - 1).min()
 sharpe_5bp   = ret_tabela.mean() / ret_tabela.std() * np.sqrt(DIAS_NO_ANO)
 
-print("=== Rotacao v2: vol target no portfolio + rebalance semanal (20 bps) ===")
-print(f"Periodo:          {retorno_estrategia.index[0].date()} a {retorno_estrategia.index[-1].date()}")
-print(f"Sharpe (vs zero): {sharpe:.2f}   (liquido do CDI: {sharpe_cdi:.2f};  a 5 bps tabela: {sharpe_5bp:.2f})")
-print(f"Sortino (vs zero):{sortino:.2f}")
-print(f"Max Drawdown:     {max_drawdown:.0%}")
-print(f"Retorno total:    {patrimonio.iloc[-1] - 1:.0%}")
-print(f"Giro anual:       {giro.mean() * DIAS_NO_ANO:.0%}  (v1 era ~1.361%)")
-print(f"Exposicao media:  {exposicao.mean():.0%}  (resto em caixa a CDI)")
-print(f"Alocacao de hoje: " + ", ".join(f"{a}={peso[a].iloc[-1]:.0%}" for a in ATIVOS))
+print(
+    f"Rotacao v2 | {retorno_estrategia.index[0].date()}→{retorno_estrategia.index[-1].date()} | "
+    f"Sharpe {sharpe:.2f} (vs CDI {sharpe_cdi:.2f}; @5bps {sharpe_5bp:.2f}) | "
+    f"MaxDD {max_drawdown:.0%} | ret {patrimonio.iloc[-1]-1:.0%} | "
+    f"expo {exposicao.mean():.0%} | hoje " + ", ".join(f"{a}={peso[a].iloc[-1]:.0%}" for a in ATIVOS)
+)

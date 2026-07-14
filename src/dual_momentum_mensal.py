@@ -60,9 +60,9 @@ sharpe_bh   = bh_terco.mean() / bh_terco.std() * np.sqrt(12)
 retorno_bh  = (1 + bh_terco).prod() - 1
 retorno_cdi = (1 + cdi_mensal.iloc[13:]).prod() - 1
 
-print('=== Dual Momentum fiel (12m por calendario, MENSAL/baseline, 20 bps) ===')
-print(f'Periodo: {ret_estrategia.index[0]:%Y-%m} a {ret_estrategia.index[-1]:%Y-%m}')
-print(f'Sharpe {sharpe:.2f} | MaxDD {drawdown_max:.0%} (regua mensal; na diaria e mais fundo) | retorno {retorno_total:.0%}')
-print(f'Caixa em {meses_caixa:.0%} dos meses | {trocas} trocas em {len(ret_estrategia)} meses | posicao hoje: {posicao_hoje}')
-print('Sharpe por bloco: ' + ' | '.join(f'{nome}: {s:.2f}' for nome, s in blocos.items()))
-print(f'Benchmarks do periodo: B&H 1/3 Sharpe {sharpe_bh:.2f}, retorno {retorno_bh:.0%} | CDI {retorno_cdi:.0%}')
+print(
+    f"Dual Momentum mensal (baseline) | {ret_estrategia.index[0]:%Y-%m}→{ret_estrategia.index[-1]:%Y-%m} | "
+    f"Sharpe {sharpe:.2f} | MaxDD {drawdown_max:.0%} | ret {retorno_total:.0%} | "
+    f"caixa {meses_caixa:.0%} | {trocas} trocas | hoje {posicao_hoje} | "
+    f"B&H Sharpe {sharpe_bh:.2f} ret {retorno_bh:.0%} | CDI {retorno_cdi:.0%}"
+)

@@ -32,8 +32,8 @@ peso    = direcao.mul(fator, axis=0).fillna(0).resample("W-FRI").last().reindex(
 mom12   = px.pct_change(252, fill_method=None)
 peso_out = peso.loc["2008":]
 
+hoje = ", ".join(f"{a}={peso_out[a].iloc[-1]:.0%}" for a in ATIVOS)
 for a in ATIVOS:
     out = pd.DataFrame({"adjustedClose": px[a], "momentum_12m": mom12[a], "peso": peso_out[a]}).dropna(subset=["peso"])
-    path = OUT / f"sinais_{a}.csv"
-    out.to_csv(path)
-    print(f"{path}  ({len(out)} linhas)  | peso hoje: {peso_out[a].iloc[-1]:.0%}")
+    out.to_csv(OUT / f"sinais_{a}.csv")
+print(f"sinais_* → {OUT}/ ({len(peso_out)} dias) | hoje {hoje}")

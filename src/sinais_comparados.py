@@ -56,8 +56,7 @@ sinal_dm["caixa"] = 1 - sinal_dm.sum(axis=1)
 sinal_dm["lider"] = led.where(inv, "CAIXA")
 sinal_dm = sinal_dm.loc[INICIO:]
 sinal_dm.to_csv(OUT / "sinais_dm.csv")
-print(f"{OUT / 'sinais_dm.csv'}  ({len(sinal_dm)} meses)  | alocacao de hoje: {sinal_dm['lider'].iloc[-1]}")
-print(f"sinais_*.csv (v2) sao separados: v2 = pesos diarios fracionarios; DM = alocacao mensal binaria")
+print(f"sinais_dm → {OUT / 'sinais_dm.csv'} ({len(sinal_dm)} meses, hoje {sinal_dm['lider'].iloc[-1]})")
 
 # ---------- visualizacao: as duas alocacoes lado a lado ----------
 peso_dm_d = peso_dm_m.reindex(precos.index, method="ffill").fillna(0).loc[INICIO:]
@@ -73,4 +72,4 @@ for ax, peso, titulo in [(ax1, peso_v2, "Rotacao v2 — pesos fracionarios (o va
 ax1.legend(loc="upper left", ncol=4, fontsize=8, framealpha=0.9)
 fig.tight_layout(rect=[0, 0, 1, 0.96])
 fig.savefig(FIGS / "sinais_comparados.png", dpi=130, facecolor="#fcfcfb")
-print(f"Grafico salvo: {FIGS / 'sinais_comparados.png'}")
+print(f"fig {FIGS / 'sinais_comparados.png'}")

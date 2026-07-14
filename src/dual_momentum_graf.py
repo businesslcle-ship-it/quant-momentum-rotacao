@@ -113,4 +113,4 @@ embaixo.grid(alpha=0.3)
 
 fig.tight_layout()
 fig.savefig(FIGS / 'dm_vs_benchmark.png', dpi=150)
-print(f'{FIGS / "dm_vs_benchmark.png"} salvo | DM60 fiel: {sh_dm60:.2f}/{dd_dm60:.0%} | baseline: {sh_gem:.2f}/{dd_gem:.0%} | B&H: {sh_bh:.2f}/{dd_bh:.0%}')
+print(f"fig {FIGS / 'dm_vs_benchmark.png'} | DM {sh_dm60:.2f}/{dd_dm60:.0%} | mensal {sh_gem:.2f}/{dd_gem:.0%} | B&H {sh_bh:.2f}/{dd_bh:.0%}")

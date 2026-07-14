@@ -55,8 +55,8 @@ for t in wA.index[12:]:
 series["Dual Momentum (livro)"] = perf(wA.reindex(precos.index, method="ffill").fillna(0))
 series["Buy & Hold 1/3"]        = ret.mean(axis=1).dropna().loc[INICIO:]
 
-print(f"=== {INICIO} a {precos.index[-1]:%Y-%m} | regua diaria | ativas @20 bps; B&H sem corretagem ===")
-print(f"{'estrategia':24}{'CAGR':>7}{'vol':>6}{'Sharpe':>8}{'MaxDD':>7}{'ret total':>11}")
+print(f"{INICIO}→{precos.index[-1]:%Y-%m} | ativas @20bps; B&H sem corretagem")
+print(f"{'estrategia':24}{'CAGR':>7}{'vol':>6}{'Sharpe':>8}{'MaxDD':>7}{'ret':>11}")
 curvas = {}
 for nome, r in series.items():
     eq = (1 + r).cumprod(); curvas[nome] = eq
@@ -88,4 +88,4 @@ ax_eq.set_xlim(curvas["Rotacao v2 (freio)"].index[0], curvas["Rotacao v2 (freio)
 ax_dd.set_ylabel("drawdown (%)"); ax_dd.grid(alpha=0.25); ax_dd.spines[["top", "right"]].set_visible(False)
 fig.tight_layout(rect=[0, 0, 1, 0.97])
 fig.savefig(FIGS / "comparativo.png", dpi=130, facecolor="#fcfcfb")
-print(f"\nGrafico salvo: {FIGS / 'comparativo.png'}")
+print(f"fig {FIGS / 'comparativo.png'}")
