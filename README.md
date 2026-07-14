@@ -49,7 +49,6 @@ Narrativa linha a linha (em portugues) dos scripts apresentados:
 
 - [Rotacao v2](docs/pseudocodigo/rotacao_v2.md) · [Dual Momentum](docs/pseudocodigo/dual_momentum.md)
 - Indice: [docs/pseudocodigo/](docs/pseudocodigo/)
-- Auditoria de numeros/fontes: [docs/INTEGRIDADE.md](docs/INTEGRIDADE.md)
 
 ## Como rodar
 
