@@ -20,7 +20,7 @@ Números: `dados/comparativo_horizontes_filme.csv` e `dados/e55_schema_resumo.cs
 - Filtro ou peso por **volume** (há auditoria prévia de elegibilidade binária no short; não alterou o Bottom10 naquela amostra — desenho de posicionamento por liquidez continua pendente).
 - Combinação de vários horizontes no mesmo score (evitada para manter o sinal interpretável).
 - Modelo de metalabeling treinado neste repositório (etapa seguinte).
-- **Volume:** auditoria A30 nos 15 570 slots E54 → **0** secos em 21d/365d; Spearman mom×liquidez ≈ 0. Corte binário não se justifica; próximo passo = peso ∝ liquidez **dentro** da cesta (mesmo N de nomes).
+- **Volume/liquidez:** auditoria nos slots da base não encontrou nomes secos; a regra **não** usa filtro nem peso por liquidez (orientação: não mexer nisso).
 
 ## Universo
 

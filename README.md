@@ -47,7 +47,7 @@ Cross-section de momentum no Path B (145 ações com histórico contínuo na jan
 
 ![Horizontes Path B](figures/horizontes_path_b.png)
 
-**Liquidez (auditoria de volume).** Nos 15 570 slots da base, trailing de 21 e 365 dias: **0** nomes sem volume/financeiro. Momentum e liquidez quase não correlacionam (Spearman ≈ 0). Corte por volume seco **não** se justifica; o próximo passo natural é **peso proporcional à liquidez dentro da cesta** (mesmos 30 nomes). Resumo: `dados/a30_volume_resumo.csv`.
+**Liquidez.** Auditoria nos nomes já escolhidos: nenhum slot sem volume relevante na janela. A regra publicada **não** filtra nem repondera por liquidez (orientação do mentor: não mexer nisso).
 
 **Painel de decisões.** Cada posição do Top20/Bottom10 em cada sinal semanal vira um exemplo: a perna superou o CDI até o próximo rebalance? **15 522** exemplos (~50% positivos), partição temporal train / test / holdout. Schema: [docs/pseudocodigo/schema_labels_e55.md](docs/pseudocodigo/schema_labels_e55.md).
 
